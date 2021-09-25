@@ -1,0 +1,39 @@
+Instalar PostgreSQL
+    1. Crear usuario de postgres
+        sudo -u postgres createuser --interactive
+    2. Cambiar contraseña del usuario creado
+    3. Crear DB para el bot
+    4. Instalar psycopg2
+        pip install wheel
+        apt install libpq-dev
+        pip install psycopg2
+    5. Conectar DB con python
+        Mandar como variable de entorno la contraseña de password
+        Crear clase singletone para mandar una única sesión a la DB
+    6. Crear tabla de canales especiales con:
+        id,guild_id,channel_id,type,name
+        Setear id como autoincremental con test_id_seq
+Crear Canal de bienvenida
+    1. Poner on_message que escuche el comando $set_welcome_channel
+    2. Validar de que el usuario sea admin con message.author.roles
+        en role tiene un objeto permissions y ese tiene administrator
+    3. Verificar si hay registros previos en la tabla para welcome channel
+        En caso de que haya registros, modificar, sino insertar registro
+    4. Enviar mensaje al canal que fue setteado como welcome
+Crear Canal de reglas
+    1. Poner on_message que escuche el comando $set_rule_channel
+    2. Validar de que el usuario sea admin con message.author.roles
+        en role tiene un objeto permissions y ese tiene administrator
+    3. Verificar si hay registros previos en la tabla para welcome channel
+        En caso de que haya registros, modificar, sino insertar registro
+    4. Enviar mensaje al canal que fue setteado como welcome
+Dar bienvenida
+    1. Poner on_member_join en los eventos
+    2. Hacer query del id del canal de bienvenida en EspecialChannel, si no hay registros no enviar nada
+    3. Obtener objeto de canal con member.guild.get_channel(id)
+    4. Enviar mensaje con el contador de usuarios en el canal
+
+
+
+Hacer bienvenida al server
+    1. Poner el evento de on_member_join
